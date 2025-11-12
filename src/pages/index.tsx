@@ -1,7 +1,109 @@
 import Head from "next/head";
-import Link from "next/link";
 import styled from "styled-components";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+
+const positioningFramework = [
+  {
+    concept: "YourLand",
+    description:
+      "The individual's personal or collective domain - a digital/physical ecosystem representing their values, work, and expression.",
+  },
+  {
+    concept: "The Network",
+    description:
+      "The protocol layer and shared space connecting all lands, enabling communication, collaboration, and discovery.",
+  },
+  {
+    concept: "Exploration",
+    description:
+      "The experience of discovering new lands, connecting with creators, and exchanging knowledge or resources.",
+  },
+  {
+    concept: "Terrain Themes",
+    description:
+      "The \"feel\" of your land - from raw and natural to luxurious and refined. Visual theming reflects individuality (earth tones, grids, patterns, textures).",
+  },
+  {
+    concept: "Proximity",
+    description:
+      "Connection through closeness - Bluetooth, local-first, or shared context. The nearer you are, the deeper the potential for real connection.",
+  },
+];
+
+const corePhilosophy = [
+  "YourLand is an invitation to define how you interact with the world.",
+  "It is not a platform - it is a landscape for self-expression, collaboration, and creation.",
+  "Each person has their own land, a space to build, shape, and share their vision.",
+  "YourLand.Network connects these worlds together - it is where explorers, builders, and dreamers discover one another's lands, share resources, and grow together.",
+];
+
+const networkActions = [
+  {
+    title: "Discover",
+    description:
+      "Explore the network and find other lands that align with your interests or values.",
+  },
+  {
+    title: "Connect",
+    description: "Form meaningful, peer-to-peer relationships.",
+  },
+  {
+    title: "Collaborate",
+    description: "Exchange ideas, resources, and creations across lands.",
+  },
+  {
+    title: "Evolve",
+    description: "Refine your land over time - it grows as you do.",
+  },
+];
+
+const tonePrinciples = [
+  {
+    title: "Inviting",
+    description: "\"Come build your world.\"",
+  },
+  {
+    title: "Empowering",
+    description: "\"It is your land, your choice.\"",
+  },
+  {
+    title: "Grounded",
+    description: "\"Rooted in shared reality, growing together.\"",
+  },
+  {
+    title: "Exploratory",
+    description: "\"A network you navigate like terrain.\"",
+  },
+];
+
+const nextSteps = [
+  {
+    title: "Landing Page Draft",
+    subtitle: "Bring the invitation to life on the homepage.",
+    items: [
+      "Hero headline: \"Your Land. Your World.\"",
+      "Subtext: \"A network of builders defining their own interactions with the world.\"",
+      "Primary call-to-action: Explore the Network (links to early examples or prototype lands).",
+    ],
+  },
+  {
+    title: "Network Map (Concept Visual)",
+    items: [
+      "Dynamic map: each node represents a land.",
+      "Interaction: Clicking a node opens that world - a creator's domain or project.",
+    ],
+  },
+  {
+    title: "Manifesto Page",
+    items: ["Core statement: ownership, connection, creativity, freedom."],
+  },
+  {
+    title: "Onboarding Flow (Later)",
+    items: [
+      "Define your land: select terrain, tone, and focus.",
+      "Connect to others: discover nearby or interest-aligned lands.",
+    ],
+  },
+];
 
 const Container = styled.div`
   min-height: 100vh;
@@ -145,45 +247,12 @@ const Subtitle = styled.p`
   margin-right: auto;
 `;
 
-const Acronym = styled.div`
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 3rem;
-  font-style: italic;
-`;
-
 const CTAGroup = styled.div`
   display: flex;
   gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 4rem;
-`;
-
-const DemoLink = styled.a`
-  position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 1001;
-  background: rgba(0, 255, 135, 0.15);
-  backdrop-filter: blur(10px);
-  color: #00ff87;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  border: 2px solid rgba(0, 255, 135, 0.3);
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  
-  &:hover {
-    background: rgba(0, 255, 135, 0.25);
-    border-color: #00ff87;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 255, 135, 0.2);
-  }
 `;
 
 const PrimaryButton = styled.button`
@@ -249,145 +318,152 @@ const SectionSubtitle = styled.p`
   margin-right: auto;
 `;
 
-const FeatureGrid = styled.div`
+const SectionInner = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+`;
+
+const ParagraphGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
 `;
 
-const FeatureCard = styled.div`
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 2.5rem;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  
-  &:hover {
-    transform: translateY(-5px);
-    border-color: #00ff87;
-    box-shadow: 0 20px 40px rgba(0, 255, 135, 0.2);
-  }
-`;
-
-const FeatureIcon = styled.div`
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
-`;
-
-const FeatureTitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #00ff87;
-`;
-
-const FeatureDescription = styled.p`
-  color: rgba(255, 255, 255, 0.7);
+const ParagraphCard = styled.div`
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1.75rem;
   line-height: 1.7;
-  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.78);
 `;
 
-const GameShowcase = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 3rem;
-  margin-top: 4rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const GameCard = styled.div`
-  background: linear-gradient(135deg, rgba(0, 255, 135, 0.1) 0%, rgba(96, 239, 255, 0.1) 100%);
-  border: 2px solid rgba(0, 255, 135, 0.3);
-  border-radius: 25px;
-  padding: 3rem;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    transform: scale(1.02);
-    border-color: #00ff87;
-    box-shadow: 0 25px 50px rgba(0, 255, 135, 0.3);
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #00ff87 0%, #60efff 100%);
-  }
-`;
-
-const GameTitle = styled.h3`
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-  color: #ffffff;
-`;
-
-const GameBadge = styled.span`
-  display: inline-block;
-  background: rgba(0, 255, 135, 0.2);
-  color: #00ff87;
-  padding: 0.5rem 1rem;
+const Quote = styled.blockquote`
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 820px;
+  border-left: 4px solid #00ff87;
+  background: rgba(0, 255, 135, 0.08);
   border-radius: 20px;
-  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.3rem;
   font-weight: 600;
-  margin-bottom: 1.5rem;
+  font-style: italic;
+`;
+
+const FrameworkTable = styled.div`
+  display: grid;
+  gap: 1.5rem;
+`;
+
+const FrameworkRow = styled.div`
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  align-items: start;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1.75rem 2rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+`;
+
+const FrameworkConcept = styled.div`
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #00ff87;
   text-transform: uppercase;
   letter-spacing: 1px;
 `;
 
-const GameDescription = styled.p`
-  color: rgba(255, 255, 255, 0.8);
+const FrameworkDescription = styled.p`
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
   line-height: 1.8;
-  font-size: 1.1rem;
 `;
 
-const HighlightSection = styled.div`
-  background: linear-gradient(135deg, rgba(0, 255, 135, 0.05) 0%, rgba(96, 239, 255, 0.05) 100%);
-  border-radius: 30px;
-  padding: 4rem;
-  margin: 4rem 0;
-  border: 1px solid rgba(0, 255, 135, 0.2);
-  
-  @media (max-width: 768px) {
-    padding: 2rem;
+const ContentList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+`;
+
+const ContentListItem = styled.li`
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 1.5rem 1.75rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  line-height: 1.7;
+
+  strong {
+    display: block;
+    font-size: 1.05rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
   }
 `;
 
-const HighlightGrid = styled.div`
+const ContentHeading = styled.h3`
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+`;
+
+const Subheading = styled.p`
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+`;
+
+const NextStepsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 `;
 
-const HighlightItem = styled.div`
-  text-align: center;
+const NextStepCard = styled.div`
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 255, 135, 0.15);
+  border-radius: 20px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
 `;
 
-const HighlightNumber = styled.div`
-  font-size: 3rem;
-  font-weight: 900;
-  background: linear-gradient(135deg, #00ff87 0%, #60efff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 0.5rem;
+const CardBulletList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 `;
 
-const HighlightLabel = styled.div`
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1rem;
+const CardBulletItem = styled.li`
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+
+  strong {
+    color: #00ff87;
   font-weight: 600;
+  }
 `;
 
 const Footer = styled.footer`
@@ -416,258 +492,132 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>YourLand - Your Local Area Network Decentralized</title>
-        <meta name="description" content="Reclaim your digital territory. YourLand is a privacy-first, user-controlled social network and gaming platform built on local area network technology." />
+        <title>YourLand.Network &mdash; Your Land. Your World.</title>
+        <meta
+          name="description"
+          content="YourLand.Network invites builders, explorers, and creators to design their own worlds, connect with others, and grow together across a landscape of shared values."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        {/* <Link href="/demo" passHref legacyBehavior>
-          <DemoLink>🎨 Try Theme Demo</DemoLink>
-        </Link> */}
-        
         <Nav>
           <Logo>yourland</Logo>
           <NavLinks>
-            <NavLink href="#features">Features</NavLink>
-            <NavLink href="#gaming">Gaming</NavLink>
-            <NavLink href="#technology">Technology</NavLink>
+            <NavLink href="#philosophy">Philosophy</NavLink>
+            <NavLink href="#framework">Framework</NavLink>
+            <NavLink href="#next-steps">Next Steps</NavLink>
           </NavLinks>
         </Nav>
 
         <Hero>
           <HeroContent>
-            <Tagline>Reclaim Your Digital Territory</Tagline>
-            <Title>Your Land.<br />Your Rules.</Title>
-            <Acronym>Your Local Area Network Decentralized</Acronym>
+            <Tagline>Invitation to Build</Tagline>
+            <Title>Your Land.<br />Your World.</Title>
             <Subtitle>
-              A privacy-first social network and gaming platform where you truly own your data, 
-              connections, and digital experiences. No surveillance. No extraction. Just pure ownership.
+              A network of builders defining their own interactions with the world. Shape your land,
+              connect through the network, and grow alongside fellow explorers, makers, and dreamers.
             </Subtitle>
             <CTAGroup>
-              <PrimaryButton>Join the Waitlist</PrimaryButton>
-              <SecondaryButton href="/demo">Demo</SecondaryButton>
+              <PrimaryButton as="a" href="#next-steps">Explore the Network</PrimaryButton>
+              <SecondaryButton as="a" href="#philosophy">Read the Manifesto</SecondaryButton>
             </CTAGroup>
           </HeroContent>
         </Hero>
 
-        <Section id="features">
-          <SectionTitle>Built for Ownership</SectionTitle>
-          <SectionSubtitle>
-            YourLand returns control to where it belongs—with you.
-          </SectionSubtitle>
-          
-          <FeatureGrid>
-            <FeatureCard>
-              <FeatureIcon>🏰</FeatureIcon>
-              <FeatureTitle>Your Digital Territory</FeatureTitle>
-              <FeatureDescription>
-                Your land, your boundaries. Create a space that truly belongs to you, 
-                with encrypted local storage and complete control over who enters.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🔐</FeatureIcon>
-              <FeatureTitle>Privacy by Design</FeatureTitle>
-              <FeatureDescription>
-                End-to-end encryption, offline-first architecture, and SQLite encryption 
-                ensure your data stays yours. No corporate surveillance. Ever.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>📡</FeatureIcon>
-              <FeatureTitle>Local Area Network</FeatureTitle>
-              <FeatureDescription>
-                Connect with nearby friends via Bluetooth and local networks. 
-                Build hyper-local communities without relying on centralized servers.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🔑</FeatureIcon>
-              <FeatureTitle>Key Management</FeatureTitle>
-              <FeatureDescription>
-                Your wallet, your keys. YourLand serves as a foundational key curation 
-                mechanism for managing your digital identity and on-chain assets.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🗄️</FeatureIcon>
-              <FeatureTitle>Your Own Database</FeatureTitle>
-              <FeatureDescription>
-                Every user gets their own encrypted SQLite database. Your digital archives, 
-                memories, and content live on your device, not someone else&apos;s server.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🔗</FeatureIcon>
-              <FeatureTitle>On-Chain Ready</FeatureTitle>
-              <FeatureDescription>
-                Built-in blockchain mechanisms for true digital ownership. 
-                Deep linking and cross-app functionality for a seamless web3 experience.
-              </FeatureDescription>
-            </FeatureCard>
-          </FeatureGrid>
-
-          <HighlightSection>
-            <SectionTitle style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>
-              A New Social Paradigm
-            </SectionTitle>
-            <HighlightGrid>
-              <HighlightItem>
-                <HighlightNumber>∞</HighlightNumber>
-                <HighlightLabel>Ownership Forever</HighlightLabel>
-              </HighlightItem>
-              <HighlightItem>
-                <HighlightNumber>0</HighlightNumber>
-                <HighlightLabel>Data Extraction</HighlightLabel>
-              </HighlightItem>
-              <HighlightItem>
-                <HighlightNumber>100%</HighlightNumber>
-                <HighlightLabel>Your Control</HighlightLabel>
-              </HighlightItem>
-            </HighlightGrid>
-          </HighlightSection>
+        <Section id="philosophy">
+          <SectionTitle>🌍 Core Philosophy</SectionTitle>
+          <SectionInner>
+            <ParagraphGrid>
+              {corePhilosophy.map((statement) => (
+                <ParagraphCard key={statement}>{statement}</ParagraphCard>
+              ))}
+            </ParagraphGrid>
+            <Quote>&ldquo;Your Land to build upon. Our network to build together.&rdquo;</Quote>
+          </SectionInner>
         </Section>
 
-        <Section id="gaming">
-          <SectionTitle>LAND Gaming</SectionTitle>
+        <Section id="framework">
+          <SectionTitle>🧭 Positioning Framework</SectionTitle>
           <SectionSubtitle>
-            Local Area Network Decentralized Gaming—where hyper-local multiplayer meets true ownership
+            A shared language for how lands relate to the network and to one another.
           </SectionSubtitle>
-
-          <GameShowcase>
-            <GameCard>
-              <GameTitle>🏝️ Mystic Island</GameTitle>
-              <GameBadge>Launch Title</GameBadge>
-              <GameDescription>
-                Explore mysterious territories with friends nearby. A local-first adventure game 
-                where proximity matters and your discoveries stay on your land. Trade artifacts, 
-                solve puzzles, and build communities in a world that respects your privacy.
-              </GameDescription>
-            </GameCard>
-
-            <GameCard>
-              <GameTitle>🎮 Borderlands</GameTitle>
-              <GameBadge>Launch Title</GameBadge>
-              <GameDescription>
-                Define your boundaries and defend your territory. A strategic multiplayer 
-                experience built on local networks where every connection is intentional. 
-                Form alliances, negotiate trades, and expand your influence—all on your terms.
-              </GameDescription>
-            </GameCard>
-          </GameShowcase>
-
-          <FeatureGrid style={{ marginTop: '4rem' }}>
-            <FeatureCard>
-              <FeatureIcon>🎯</FeatureIcon>
-              <FeatureTitle>Hyper-Local Multiplayer</FeatureTitle>
-              <FeatureDescription>
-                Play with people actually near you. Bluetooth and LAN connectivity 
-                create authentic local gaming experiences without the lag or surveillance.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>💎</FeatureIcon>
-              <FeatureTitle>True Item Ownership</FeatureTitle>
-              <FeatureDescription>
-                Your in-game items, collectibles, and achievements are cryptographically 
-                yours. Trade them, keep them, or take them to other LAND games.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🌐</FeatureIcon>
-              <FeatureTitle>Cross-Game Assets</FeatureTitle>
-              <FeatureDescription>
-                Items and reputation earned in one LAND game can travel with you to others. 
-                Your digital identity grows with every experience.
-              </FeatureDescription>
-            </FeatureCard>
-          </FeatureGrid>
+          <SectionInner>
+            <FrameworkTable>
+              {positioningFramework.map((item) => (
+                <FrameworkRow key={item.concept}>
+                  <FrameworkConcept>{item.concept}</FrameworkConcept>
+                  <FrameworkDescription>{item.description}</FrameworkDescription>
+                </FrameworkRow>
+              ))}
+            </FrameworkTable>
+          </SectionInner>
         </Section>
 
-        <Section id="technology">
-          <SectionTitle>Built on Solid Ground</SectionTitle>
-          <SectionSubtitle>
-            Modern technology meets timeless principles: privacy, ownership, and user sovereignty
-          </SectionSubtitle>
-
-          <FeatureGrid>
-            <FeatureCard>
-              <FeatureIcon>⚡</FeatureIcon>
-              <FeatureTitle>Offline-First Architecture</FeatureTitle>
-              <FeatureDescription>
-                Everything works without an internet connection. Your social graph, 
-                games, and content are always accessible, even when you&apos;re off the grid.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🛡️</FeatureIcon>
-              <FeatureTitle>Encrypted Storage</FeatureTitle>
-              <FeatureDescription>
-                Your SQLite database is encrypted at rest. Even if someone gets physical 
-                access to your device, your data remains secure.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🔄</FeatureIcon>
-              <FeatureTitle>Peer-to-Peer Sync</FeatureTitle>
-              <FeatureDescription>
-                Share updates directly with friends via local networks. No central server 
-                means no single point of failure or surveillance.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🎨</FeatureIcon>
-              <FeatureTitle>Deep Customization</FeatureTitle>
-              <FeatureDescription>
-                Remember MySpace? YourLand brings back that creative freedom. 
-                Make your space truly yours with complete customization control.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🔐</FeatureIcon>
-              <FeatureTitle>Secure Communication</FeatureTitle>
-              <FeatureDescription>
-                End-to-end encrypted messaging and file sharing. Your conversations 
-                are private by default, not by corporate policy.
-              </FeatureDescription>
-            </FeatureCard>
-
-            <FeatureCard>
-              <FeatureIcon>🌟</FeatureIcon>
-              <FeatureTitle>Open Protocol</FeatureTitle>
-              <FeatureDescription>
-                Built on open standards and blockchain technology. YourLand is a 
-                foundation for an ecosystem of privacy-respecting apps.
-              </FeatureDescription>
-            </FeatureCard>
-          </FeatureGrid>
+        <Section id="enables">
+          <SectionTitle>🧩 What YourLand.Network Enables</SectionTitle>
+          <SectionInner>
+            <ContentList>
+              {networkActions.map((action) => (
+                <ContentListItem key={action.title}>
+                  <strong>{`${action.title} \u2192`}</strong>
+                  {action.description}
+                </ContentListItem>
+              ))}
+            </ContentList>
+          </SectionInner>
         </Section>
 
-        <Section>
-          <HighlightSection>
-            <SectionTitle style={{ fontSize: '3rem' }}>
-              Ready to Claim Your Land?
-            </SectionTitle>
-            <SectionSubtitle style={{ marginBottom: '2rem' }}>
-              Join the movement to reclaim digital ownership. Your land awaits.
-            </SectionSubtitle>
-            <CTAGroup>
-              <PrimaryButton>Get Early Access</PrimaryButton>
-              <SecondaryButton>Read the Whitepaper</SecondaryButton>
-            </CTAGroup>
-          </HighlightSection>
+        <Section id="tone">
+          <SectionTitle>🪞 Philosophical Tone</SectionTitle>
+          <SectionSubtitle>
+            How the network should feel whenever someone encounters YourLand.
+          </SectionSubtitle>
+          <SectionInner>
+            <ContentList>
+              {tonePrinciples.map((principle) => (
+                <ContentListItem key={principle.title}>
+                  <strong>{principle.title}</strong>
+                  {principle.description}
+                </ContentListItem>
+              ))}
+            </ContentList>
+          </SectionInner>
+        </Section>
+
+        <Section id="next-steps">
+          <SectionTitle>🏗️ Next Steps</SectionTitle>
+          <SectionInner>
+            <NextStepsGrid>
+              {nextSteps.map((card) => (
+                <NextStepCard key={card.title}>
+                  <div>
+                    <ContentHeading>{card.title}</ContentHeading>
+                    {card.subtitle && <Subheading>{card.subtitle}</Subheading>}
+                  </div>
+                  <CardBulletList>
+                    {card.items.map((item) => {
+                      const [lead, ...rest] = item.split(":");
+                      const detail = rest.join(":").trim();
+                      const hasDetail = rest.length > 0 && detail.length > 0;
+
+                      return (
+                        <CardBulletItem key={item}>
+                          {hasDetail ? (
+                            <>
+                              <strong>{`${lead.trim()}:`}</strong> {detail}
+                            </>
+                          ) : (
+                            item
+                          )}
+                        </CardBulletItem>
+                      );
+                    })}
+                  </CardBulletList>
+                </NextStepCard>
+              ))}
+            </NextStepsGrid>
+          </SectionInner>
         </Section>
 
         <Footer>
