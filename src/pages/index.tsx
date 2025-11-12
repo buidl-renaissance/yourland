@@ -1,5 +1,7 @@
 import Head from "next/head";
+import Link from "next/link";
 import styled from "styled-components";
+import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 const Container = styled.div`
   min-height: 100vh;
@@ -70,6 +72,21 @@ const Hero = styled.section`
   &::before {
     content: '';
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/grid-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;
+    z-index: 0;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
     width: 500px;
     height: 500px;
     background: radial-gradient(circle, rgba(0, 255, 135, 0.15) 0%, transparent 70%);
@@ -77,6 +94,7 @@ const Hero = styled.section`
     left: 50%;
     transform: translate(-50%, -50%);
     animation: pulse 4s ease-in-out infinite;
+    z-index: 0;
   }
   
   @keyframes pulse {
@@ -140,6 +158,32 @@ const CTAGroup = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 4rem;
+`;
+
+const DemoLink = styled.a`
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 1001;
+  background: rgba(0, 255, 135, 0.15);
+  backdrop-filter: blur(10px);
+  color: #00ff87;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid rgba(0, 255, 135, 0.3);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  &:hover {
+    background: rgba(0, 255, 135, 0.25);
+    border-color: #00ff87;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 255, 135, 0.2);
+  }
 `;
 
 const PrimaryButton = styled.button`
@@ -378,6 +422,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
+        {/* <Link href="/demo" passHref legacyBehavior>
+          <DemoLink>🎨 Try Theme Demo</DemoLink>
+        </Link> */}
+        
         <Nav>
           <Logo>yourland</Logo>
           <NavLinks>
@@ -398,7 +446,7 @@ export default function Home() {
             </Subtitle>
             <CTAGroup>
               <PrimaryButton>Join the Waitlist</PrimaryButton>
-              <SecondaryButton>Watch Demo</SecondaryButton>
+              <SecondaryButton href="/demo">Demo</SecondaryButton>
             </CTAGroup>
           </HeroContent>
         </Hero>
@@ -451,7 +499,7 @@ export default function Home() {
               <FeatureTitle>Your Own Database</FeatureTitle>
               <FeatureDescription>
                 Every user gets their own encrypted SQLite database. Your digital archives, 
-                memories, and content live on your device, not someone else's server.
+                memories, and content live on your device, not someone else&apos;s server.
               </FeatureDescription>
             </FeatureCard>
 
@@ -556,7 +604,7 @@ export default function Home() {
               <FeatureTitle>Offline-First Architecture</FeatureTitle>
               <FeatureDescription>
                 Everything works without an internet connection. Your social graph, 
-                games, and content are always accessible, even when you're off the grid.
+                games, and content are always accessible, even when you&apos;re off the grid.
               </FeatureDescription>
             </FeatureCard>
 

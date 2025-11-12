@@ -4,6 +4,43 @@
   margin: 0;
 }
 
+:root {
+  /* Theme colors - defaults (Moss Day), overridden by ThemeProvider */
+  --color-primary: #8BA888;
+  --color-secondary: #A8C5A0;
+  --color-background: #F5F7F4;
+  --color-background-gradient: linear-gradient(135deg, #F5F7F4 0%, #E8EDE7 100%);
+  --color-surface: rgba(139, 168, 136, 0.1);
+  --color-surface-hover: rgba(139, 168, 136, 0.18);
+  --color-accent: #B8985F;
+  --color-text: #2C3E2A;
+  --color-text-secondary: #5A6C58;
+  --color-border: rgba(139, 168, 136, 0.25);
+  --color-border-hover: rgba(139, 168, 136, 0.45);
+  
+  /* Elevation */
+  --elevation-none: none;
+  --elevation-low: 0 2px 8px rgba(44, 62, 42, 0.08);
+  --elevation-medium: 0 4px 12px rgba(44, 62, 42, 0.1);
+  --elevation-high: 0 8px 20px rgba(44, 62, 42, 0.12);
+  --elevation-very-high: 0 12px 28px rgba(44, 62, 42, 0.15);
+  
+  /* Blur */
+  --blur-none: 0px;
+  --blur-low: 6px;
+  --blur-medium: 10px;
+  --blur-high: 16px;
+  
+  /* Corner Radius */
+  --corner-radius-small: 16px;
+  --corner-radius-medium: 24px;
+  --corner-radius-large: 32px;
+  --corner-radius-round: 50px;
+  
+  /* Animation */
+  --animation-style: bloom;
+}
+
 html,
 body {
   max-width: 100vw;
@@ -16,6 +53,9 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 a {
