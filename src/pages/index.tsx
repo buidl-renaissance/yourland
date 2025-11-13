@@ -204,6 +204,26 @@ const PrimaryButton = styled.button`
   }
 `;
 
+const PrimaryLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #00ff87 0%, #60efff 100%);
+  color: #0a0a0a;
+  padding: 1.2rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 255, 135, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(0, 255, 135, 0.4);
+  }
+`;
+
 const SecondaryButton = styled.button`
   background: transparent;
   color: #ffffff;
@@ -244,7 +264,7 @@ const SectionSubtitle = styled.p`
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
   margin-bottom: 4rem;
-  max-width: 700px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -254,6 +274,30 @@ const FeatureGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
+`;
+
+const OwnershipGrid = styled(FeatureGrid)`
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const SolidGroundGrid = styled(FeatureGrid)`
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const FeatureCard = styled.div`
@@ -271,15 +315,24 @@ const FeatureCard = styled.div`
   }
 `;
 
-const FeatureIcon = styled.div`
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
+const FeatureHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+`;
+
+const FeatureIcon = styled.span`
+  font-size: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const FeatureTitle = styled.h3`
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin: 0;
   color: #00ff87;
 `;
 
@@ -412,6 +465,29 @@ const FooterLogo = styled.div`
   margin-bottom: 1rem;
 `;
 
+const FooterLinks = styled.div`
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
+`;
+
+const FooterLink = styled.a`
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #00ff87;
+  }
+`;
+
 export default function Home() {
   return (
     <>
@@ -445,8 +521,11 @@ export default function Home() {
               connections, and digital experiences. No surveillance. No extraction. Just pure ownership.
             </Subtitle>
             <CTAGroup>
-              <PrimaryButton>Join the Waitlist</PrimaryButton>
-              <SecondaryButton href="/demo">Demo</SecondaryButton>
+              <PrimaryButton>Get Started</PrimaryButton>
+              <Link href="/claim" passHref legacyBehavior>
+                <PrimaryLink>Claim YourLand</PrimaryLink>
+              </Link>
+              {/* <SecondaryButton href="/demo">Demo</SecondaryButton> */}
             </CTAGroup>
           </HeroContent>
         </Hero>
@@ -457,10 +536,12 @@ export default function Home() {
             YourLand returns control to where it belongs—with you.
           </SectionSubtitle>
           
-          <FeatureGrid>
+          <OwnershipGrid>
             <FeatureCard>
-              <FeatureIcon>🏰</FeatureIcon>
-              <FeatureTitle>Your Digital Territory</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🏰</FeatureIcon>
+                <FeatureTitle>Your Digital Territory</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Your land, your boundaries. Create a space that truly belongs to you, 
                 with encrypted local storage and complete control over who enters.
@@ -468,8 +549,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🔐</FeatureIcon>
-              <FeatureTitle>Privacy by Design</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🔐</FeatureIcon>
+                <FeatureTitle>Privacy by Design</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 End-to-end encryption, offline-first architecture, and SQLite encryption 
                 ensure your data stays yours. No corporate surveillance. Ever.
@@ -477,8 +560,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>📡</FeatureIcon>
-              <FeatureTitle>Local Area Network</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>📡</FeatureIcon>
+                <FeatureTitle>Local Area Network</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Connect with nearby friends via Bluetooth and local networks. 
                 Build hyper-local communities without relying on centralized servers.
@@ -486,8 +571,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🔑</FeatureIcon>
-              <FeatureTitle>Key Management</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🔑</FeatureIcon>
+                <FeatureTitle>Key Management</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Your wallet, your keys. YourLand serves as a foundational key curation 
                 mechanism for managing your digital identity and on-chain assets.
@@ -495,8 +582,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🗄️</FeatureIcon>
-              <FeatureTitle>Your Own Database</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🗄️</FeatureIcon>
+                <FeatureTitle>Your Own Database</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Every user gets their own encrypted SQLite database. Your digital archives, 
                 memories, and content live on your device, not someone else&apos;s server.
@@ -504,14 +593,16 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🔗</FeatureIcon>
-              <FeatureTitle>On-Chain Ready</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🔗</FeatureIcon>
+                <FeatureTitle>On-Chain Ready</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Built-in blockchain mechanisms for true digital ownership. 
                 Deep linking and cross-app functionality for a seamless web3 experience.
               </FeatureDescription>
             </FeatureCard>
-          </FeatureGrid>
+          </OwnershipGrid>
 
           <HighlightSection>
             <SectionTitle style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>
@@ -564,8 +655,10 @@ export default function Home() {
 
           <FeatureGrid style={{ marginTop: '4rem' }}>
             <FeatureCard>
-              <FeatureIcon>🎯</FeatureIcon>
-              <FeatureTitle>Hyper-Local Multiplayer</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🎯</FeatureIcon>
+                <FeatureTitle>Hyper-Local Multiplayer</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Play with people actually near you. Bluetooth and LAN connectivity 
                 create authentic local gaming experiences without the lag or surveillance.
@@ -573,8 +666,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>💎</FeatureIcon>
-              <FeatureTitle>True Item Ownership</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>💎</FeatureIcon>
+                <FeatureTitle>True Item Ownership</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Your in-game items, collectibles, and achievements are cryptographically 
                 yours. Trade them, keep them, or take them to other LAND games.
@@ -582,8 +677,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🌐</FeatureIcon>
-              <FeatureTitle>Cross-Game Assets</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🌐</FeatureIcon>
+                <FeatureTitle>Cross-Game Assets</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Items and reputation earned in one LAND game can travel with you to others. 
                 Your digital identity grows with every experience.
@@ -598,10 +695,12 @@ export default function Home() {
             Modern technology meets timeless principles: privacy, ownership, and user sovereignty
           </SectionSubtitle>
 
-          <FeatureGrid>
+          <SolidGroundGrid>
             <FeatureCard>
-              <FeatureIcon>⚡</FeatureIcon>
-              <FeatureTitle>Offline-First Architecture</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>⚡</FeatureIcon>
+                <FeatureTitle>Offline-First Architecture</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Everything works without an internet connection. Your social graph, 
                 games, and content are always accessible, even when you&apos;re off the grid.
@@ -609,8 +708,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🛡️</FeatureIcon>
-              <FeatureTitle>Encrypted Storage</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🛡️</FeatureIcon>
+                <FeatureTitle>Encrypted Storage</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Your SQLite database is encrypted at rest. Even if someone gets physical 
                 access to your device, your data remains secure.
@@ -618,8 +719,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🔄</FeatureIcon>
-              <FeatureTitle>Peer-to-Peer Sync</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🔄</FeatureIcon>
+                <FeatureTitle>Peer-to-Peer Sync</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Share updates directly with friends via local networks. No central server 
                 means no single point of failure or surveillance.
@@ -627,8 +730,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🎨</FeatureIcon>
-              <FeatureTitle>Deep Customization</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🎨</FeatureIcon>
+                <FeatureTitle>Deep Customization</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Remember MySpace? YourLand brings back that creative freedom. 
                 Make your space truly yours with complete customization control.
@@ -636,8 +741,10 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🔐</FeatureIcon>
-              <FeatureTitle>Secure Communication</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🔐</FeatureIcon>
+                <FeatureTitle>Secure Communication</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 End-to-end encrypted messaging and file sharing. Your conversations 
                 are private by default, not by corporate policy.
@@ -645,27 +752,30 @@ export default function Home() {
             </FeatureCard>
 
             <FeatureCard>
-              <FeatureIcon>🌟</FeatureIcon>
-              <FeatureTitle>Open Protocol</FeatureTitle>
+              <FeatureHeader>
+                <FeatureIcon>🌟</FeatureIcon>
+                <FeatureTitle>Open Protocol</FeatureTitle>
+              </FeatureHeader>
               <FeatureDescription>
                 Built on open standards and blockchain technology. YourLand is a 
                 foundation for an ecosystem of privacy-respecting apps.
               </FeatureDescription>
             </FeatureCard>
-          </FeatureGrid>
+          </SolidGroundGrid>
         </Section>
 
         <Section>
           <HighlightSection>
             <SectionTitle style={{ fontSize: '3rem' }}>
-              Ready to Claim Your Land?
+              Builders Wanted
             </SectionTitle>
             <SectionSubtitle style={{ marginBottom: '2rem' }}>
-              Join the movement to reclaim digital ownership. Your land awaits.
+              We&apos;re prototyping the next evolution of local-first, user-owned networks. 
+              Bring your curiosity, craft, and code—let&apos;s ship something unforgettable together.
             </SectionSubtitle>
             <CTAGroup>
-              <PrimaryButton>Get Early Access</PrimaryButton>
-              <SecondaryButton>Read the Whitepaper</SecondaryButton>
+              <PrimaryButton>Join the Builder Loop</PrimaryButton>
+              <SecondaryButton>Preview the Build Spec</SecondaryButton>
             </CTAGroup>
           </HighlightSection>
         </Section>
@@ -673,6 +783,14 @@ export default function Home() {
         <Footer>
           <FooterLogo>yourland</FooterLogo>
           <FooterText>Your Local Area Network Decentralized</FooterText>
+          <FooterLinks>
+            <Link href="/support" passHref legacyBehavior>
+              <FooterLink>Support</FooterLink>
+            </Link>
+            <Link href="/privacy" passHref legacyBehavior>
+              <FooterLink>Privacy</FooterLink>
+            </Link>
+          </FooterLinks>
           <FooterText style={{ marginTop: '1rem' }}>
             © 2025 YourLand. Built for users, owned by users.
           </FooterText>
