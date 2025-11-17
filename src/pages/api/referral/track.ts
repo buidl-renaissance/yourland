@@ -2,9 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '@/server/db';
 import { referrals } from '@/server/schema';
 import { eq } from 'drizzle-orm';
-
-// Track referral events and distribute rewards
-type ReferralEvent = 'accountCreated' | 'profileCompleted' | 'appDownloaded' | 'landClaimed';
+import type { ReferralEvent } from '@/lib/referral/tracking';
 
 interface ReferralEventData {
   referrerId: string;

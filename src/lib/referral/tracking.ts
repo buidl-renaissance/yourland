@@ -1,4 +1,4 @@
-import type { ReferralEvent } from '@/pages/api/referral/track';
+export type ReferralEvent = 'accountCreated' | 'profileCompleted' | 'appDownloaded' | 'landClaimed';
 
 export interface ReferralReward {
   event: ReferralEvent;
